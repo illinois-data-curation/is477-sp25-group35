@@ -1,4 +1,5 @@
 import pandas as pd
+import hashlib
 from datetime import datetime
 df_wsb = pd.read_csv('../data/wallstreetbets.csv', low_memory=False)
 df_investing = pd.read_csv('../data/investing.csv', low_memory=False)
