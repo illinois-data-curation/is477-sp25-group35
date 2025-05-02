@@ -1,6 +1,6 @@
 import pandas as pd
 from textblob import TextBlob
-df = pd.read_csv('../data/reddit_stock_merged.csv')
+df = pd.read_csv('data/reddit_stock_merged.csv')
 def get_sentiment(text):
     if pd.isnull(text) or text.strip() == "":
         return 0.0

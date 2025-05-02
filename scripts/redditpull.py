@@ -1,9 +1,18 @@
 import pandas as pd
 import hashlib
 from datetime import datetime
-df_wsb = pd.read_csv('../data/wallstreetbets.csv', low_memory=False)
-df_investing = pd.read_csv('../data/investing.csv', low_memory=False)
-df_stocks = pd.read_csv('../data/stocks.csv', low_memory=False)
+def verify_sha256(filepath, expected_hash):
+    with open(filepath, 'rb') as f:
+        file_hash = hashlib.sha256(f.read()).hexdigest()
+    if file_hash != expected_hash:
+        raise ValueError(f"[ERROR] Hash mismatch for {filepath}.\nExpected: {expected_hash}\nFound:    {file_hash}")
+    print(f"[OK] {filepath} passed SHA-256 integrity check.")
+verify_sha256('data/wallstreetbets.csv', '3ce3697de550f013bb45446a0807b46cafb015e172971b6d40d8ca256096eec7')
+verify_sha256('data/investing.csv', '61d1bea344c1025c027520665f16bf36e9392e53506aaf55abb784885a60d5d2')
+verify_sha256('data/stocks.csv', 'ffe9b306a6eb60b01784e74106d309dd705ccb1680f4150aa5f2fa685c8bfc49')
+df_wsb = pd.read_csv('data/wallstreetbets.csv', low_memory=False)
+df_investing = pd.read_csv('data/investing.csv', low_memory=False)
+df_stocks = pd.read_csv('data/stocks.csv', low_memory=False)
 df = pd.concat([df_wsb, df_investing, df_stocks], ignore_index=True)
 print("Columns:", df.columns.tolist())
 df['created'] = pd.to_datetime(df['created'], errors='coerce')
@@ -21,5 +30,5 @@ def find_company(text):
     return None
 df['matched_company'] = df['title'].apply(find_company)
 filtered_df = df[df['matched_company'].notnull()]
-filtered_df.to_csv('../data/reddit_posts_clean.csv', index=False)
+filtered_df.to_csv('data/reddit_posts_clean.csv', index=False)
 print(f"Saved {len(filtered_df)} posts mentioning target companies.")

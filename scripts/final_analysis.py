@@ -2,17 +2,23 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+
 df = pd.read_csv('data/reddit_stock_sentiment.csv')
 df['stock_date'] = pd.to_datetime(df['stock_date'])
+
 if 'Return' not in df.columns:
     if 'stock_close_price' in df.columns:
         df['Return'] = df['stock_close_price'].pct_change()
     else:
         raise ValueError("No 'stock_close_price' column found to calculate returns.")
+
 df = df.dropna(subset=['Return', 'sentiment_score'])
+
 if os.path.exists('results'):
     for file in os.listdir('results'):
-        os.remove(os.path.join('results', file))
+        file_path = os.path.join('results', file)
+        if os.path.isfile(file_path):
+            os.remove(file_path)
 else:
     os.makedirs('results')
 
@@ -32,6 +38,7 @@ plt.legend()
 plt.tight_layout()
 plt.savefig('results/overall_sentiment_vs_return.png')
 plt.close()
+
 tickers = df['ticker'].unique()
 summary = []
 
@@ -61,6 +68,7 @@ for ticker in tickers:
     plt.tight_layout()
     plt.savefig(f'results/{ticker}_sentiment_vs_return.png')
     plt.close()
+
 summary_df = pd.DataFrame(summary)
 summary_df = summary_df.sort_values(by='Correlation', ascending=False)
 summary_df.to_csv('results/correlation_summary.csv', index=False)

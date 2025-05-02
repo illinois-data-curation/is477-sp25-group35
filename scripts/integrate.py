@@ -1,6 +1,6 @@
 import pandas as pd
 
-reddit_df = pd.read_csv('../data/reddit_posts_clean.csv', parse_dates=['created'])
+reddit_df = pd.read_csv('data/reddit_posts_clean.csv', parse_dates=['created'])
 
 companies_tickers = {
     'Apple': 'AAPL',
@@ -18,7 +18,7 @@ companies_tickers = {
 
 stocks_data = {}
 for ticker in set(companies_tickers.values()):
-    stock_df = pd.read_csv(f'../data/{ticker}_stock.csv', index_col=0, parse_dates=True)
+    stock_df = pd.read_csv(f'data/{ticker}_stock.csv', index_col=0, parse_dates=True)
     stock_df.reset_index(inplace=True)
     stock_df.rename(columns={stock_df.columns[0]: 'Date'}, inplace=True)
     stock_df['Date'] = pd.to_datetime(stock_df['Date'], errors='coerce')
