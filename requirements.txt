@@ -1,8 +1,7 @@
 pandas
+requests
 numpy
 matplotlib
-requests
-snakemake
-praw
 textblob
-yfinance
+praw
+python-dotenv
