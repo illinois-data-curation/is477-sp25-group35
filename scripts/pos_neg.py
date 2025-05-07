@@ -15,4 +15,4 @@ def label_sentiment(score):
     else:
         return 'neutral'
 df['sentiment_label'] = df['sentiment_score'].apply(label_sentiment)
-df.to_csv('../data/reddit_stock_sentiment.csv', index=False)
+df.to_csv('data/reddit_stock_sentiment.csv', index=False)

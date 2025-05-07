@@ -48,4 +48,4 @@ for idx, row in reddit_df.iterrows():
         })
 
 final_df = pd.DataFrame(merged_data)
-final_df.to_csv('../data/reddit_stock_merged.csv', index=False)
+final_df.to_csv('data/reddit_stock_merged.csv', index=False)
