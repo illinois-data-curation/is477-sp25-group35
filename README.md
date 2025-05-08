@@ -1,5 +1,8 @@
 # Reddit Sentiment vs. Stock Price Movement
 ## Link to archival record
+University of Illinois Box Data and Results folders: https://uofi.box.com/s/8929gdp7tv3sn6mjs7ox010hpg63l356
+Zenodo Archived Record:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15367306.svg)](https://doi.org/10.5281/zenodo.15367306)
 ## Contributors
 *Will Baysingar
 *Kareem Adi
@@ -26,3 +29,5 @@ To reproduce this project:
 Leukipp. (2023). Reddit Finance Data [Data set]. Kaggle. https://www.kaggle.com/datasets/leukipp/reddit-finance-data
 Loria, S. (2022). TextBlob (Version X.X) [Source code]. GitHub. https://github.com/sloria/TextBlob
 Alpha Vantage Inc. (n.d.). Alpha Vantage: Free APIs for Realtime and Historical Data. https://www.alphavantage.co/
+
+
