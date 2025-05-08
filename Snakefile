@@ -1,4 +1,3 @@
-# List of stock tickers
 TICKERS = ["AAPL", "TSLA", "AMZN", "MSFT", "GOOG"]
 
 rule all:
